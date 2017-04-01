@@ -1,0 +1,11 @@
+name: ForumSync
+main: me.sisko.forums.Core
+version: 1.1
+commands:
+  register:
+    description: Creates a forum account
+    usage: /register <email> <password>
+  forum:
+    description: Forum admin command
+    usage: /forum <reload|checkaccount>
+    permission: forum.admin
