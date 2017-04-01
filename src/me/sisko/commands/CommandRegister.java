@@ -46,6 +46,7 @@ public class CommandRegister implements CommandExecutor {
 									
 								} else {
 									p.sendMessage(ChatColor.RED + "Account could not be created (does it already exist?)");
+									p.sendMessage(ChatColor.RED + "If you wish to change your password, use /changepassword");
 								}
 								accounts.remove(i);
 								return true;
