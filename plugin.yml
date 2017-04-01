@@ -9,3 +9,6 @@ commands:
     description: Forum admin command
     usage: /forum <reload|checkaccount>
     permission: forum.admin
+  changepassword:
+    description: Changes your forum password
+    usage: /changepassword <newpassword>

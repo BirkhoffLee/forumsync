@@ -13,6 +13,8 @@ public class AccountManager {
 			+ "VALUES (NULL, '0', '2', '', '0', '%IP%', '%TIME%', '%USERNAME%', '%USERNAME_CLEAN%', '%HASHED_PASSWORD%', '0', '%EMAIL%', '0', '', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', 'en', 'America/Anguilla', 'D M d, Y g:i a', '1', '0', '', '0', '0', '0', '0', '-3', '0', '0', 't', 'd', '0', 't', 'a', '0', '1', '0', '1', '1', '1', '1', '230271', '', '', '0', '0', '', '', '', '', '', '', '', '1', '0', '0');";
 
 	private final static String ADDTOGROUPTEMPLATE = "INSERT INTO `phpbb_user_group` (`group_id`, `user_id`, `group_leader`, `user_pending`) VALUES ('2', '%USERID%', '0', '0')";
+	
+	private final static String CHANGEPASSWORDTEMPLATE = "UPDATE `phpbb_users` SET `user_password` = '%HASHED_PASSWORD%' WHERE `phpbb_users`.`username` = '%USERNAME%';";
 
 	private static ForumSQL SQL = new ForumSQL(
 			config.getString("sql.ip"),
@@ -31,7 +33,6 @@ public class AccountManager {
 				config.getString("sql.user"),
 				config.getString("sql.pass"));
 	}
-
 	public static boolean createAccount(String name, String email, String pass, String ip) {
 		try {
 			String account = CREATEACCOUNTTEMPLATE;
@@ -48,10 +49,22 @@ public class AccountManager {
 			System.out.println("Found user ID: " + id);
 			SQL.queryUpdate(group);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
-
+	
+	public static boolean changePassword(String name, String pass) {
+		try {
+			String password = CHANGEPASSWORDTEMPLATE;
+			password = password.replace("%USERNAME%", name);
+			password = password.replace("%HASHED_PASSWORD%", Hasher.hash(pass));
+			SQL.queryUpdate(password);
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }

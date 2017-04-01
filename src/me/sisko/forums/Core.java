@@ -13,11 +13,12 @@ public class Core extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		plugin = this;
-		
-		getCommand("register").setExecutor(new CommandRegister()); // Reister commands
+				
+		getCommand("register").setExecutor(new CommandRegister());
 		getCommand("forum").setExecutor(new CommandForum());
+		getCommand("changepassword").setExecutor(new CommandChangePassword());
 		
-		getConfig().addDefault("sql.ip", "1.1.1.1"); // add default values to config
+		getConfig().addDefault("sql.ip", "1.1.1.1");
 		getConfig().addDefault("sql.port", "3306");
 		getConfig().addDefault("sql.database", "forums");
 		getConfig().addDefault("sql.user", "root");
@@ -28,18 +29,18 @@ public class Core extends JavaPlugin implements Listener {
 		getConfig().addDefault("sql.columns.passwords", "passwords");
 
 		
-		if (!getDataFolder().exists()) getDataFolder().mkdirs(); // make config directory if necessary
+		if (!getDataFolder().exists()) getDataFolder().mkdirs();
 		
-		if (!new File(getDataFolder(), "config.yml").exists()) { // if the config file doesn't exist
-			getLogger().info("Config.yml not found, creating!"); // create the default one
+		if (!new File(getDataFolder(), "config.yml").exists()) { 
+			getLogger().info("Config.yml not found, creating!");
 			getConfig().options().copyDefaults(true);
 			saveConfig();
 		} else {
-			getLogger().info("Config.yml found, loading!"); // otherwise do nothing
+			getLogger().info("Config.yml found, loading!");
 		}
 		
 
-		getServer().getPluginManager().registerEvents(this, this); // allow plugin to listen for spigot events
+		getServer().getPluginManager().registerEvents(this, this);
 
 	}
 
