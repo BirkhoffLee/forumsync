@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import me.sisko.forums.AccountCreator;
 import me.sisko.forums.Core;
 import me.sisko.phpbb.AccountManager;
-import me.sisko.phpbb.Hasher;
 import net.md_5.bungee.api.ChatColor;
 
 public class CommandRegister implements CommandExecutor {
@@ -37,7 +36,7 @@ public class CommandRegister implements CommandExecutor {
 						if (accounts.get(i).getName().equals(p.getName())) {
 							nameFound = true;
 							if (accounts.get(i).getPass().equals(args[1])) {
-								if (AccountManager.createAccount(accounts.get(i).getName(), accounts.get(i).getEmail(), Hasher.hash(accounts.get(i).getPass()), p.getAddress().getHostString())) {
+								if (AccountManager.createAccount(accounts.get(i).getName(), accounts.get(i).getEmail(), accounts.get(i).getPass(), p.getAddress().getHostString())) {
 									Core.plugin.getLogger().info("Creating an account for " + p.getName());
 									p.sendMessage(ChatColor.GREEN + "Account created!");
 									p.sendMessage(ChatColor.GREEN + "Name: " + accounts.get(i).getName());
