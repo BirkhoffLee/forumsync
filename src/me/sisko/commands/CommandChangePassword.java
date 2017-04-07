@@ -34,7 +34,7 @@ public class CommandChangePassword implements CommandExecutor {
 							if (passwords.get(i).getPass().equals(args[1])) {
 								if(AccountManager.changePassword(passwords.get(i).getName(), passwords.get(i).getPass())) {
 									p.sendMessage(ChatColor.GREEN + "Password Changed!");
-									p.sendRawMessage("[\"\",{\"text\":\"Click here to log in to the forums\",\"color\":\"blue\",\"underlined\":true,\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.left4craft.org/\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Open the forums\",\"color\":\"aqua\"}]}}}]");
+									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + p.getName() + " [\"\",{\"text\":\"Click here to log in to the forums\",\"color\":\"blue\",\"underlined\":true,\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.left4craft.org\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Open the forums\",\"color\":\"aqua\"}]}}}]");
 								} else {
 									p.sendMessage(ChatColor.RED + "Error changing password (does your account exist?)");
 								}
