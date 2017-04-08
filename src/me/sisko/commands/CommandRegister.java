@@ -41,7 +41,8 @@ public class CommandRegister implements CommandExecutor {
 									p.sendMessage(ChatColor.GREEN + "Account created!");
 									p.sendMessage(ChatColor.GREEN + "Name: " + accounts.get(i).getName());
 									p.sendMessage(ChatColor.GREEN + "Email: " + accounts.get(i).getEmail());
-									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + p.getName() + " [\"\",{\"text\":\"Click here to log in to the forums\",\"color\":\"blue\",\"underlined\":true,\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.left4craft.org\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Open the forums\",\"color\":\"aqua\"}]}}}]");									
+									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + p.getName() + " [\"\",{\"text\":\"Click here to log in to the forums\",\"color\":\"blue\",\"underlined\":true,\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.left4craft.org\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Open the forums\",\"color\":\"aqua\"}]}}}]");
+									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " group set User");
 								} else {
 									p.sendMessage(ChatColor.RED + "Account could not be created (does it already exist?)");
 									p.sendMessage(ChatColor.RED + "If you wish to change your password, use /changepassword");
