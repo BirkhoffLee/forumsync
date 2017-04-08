@@ -26,7 +26,7 @@ public class RankSync {
 				Core.plugin.getLogger().info(p.getName()+ "'s forum id is " + id[0]);
 				int groupNumber = getGroupNumber(group);
 				if (getGroupNumber(group) > 0) {
-					Core.plugin.getLogger().info("Syncing " + p.getName() + " (group = " + group + ", user id = " + id[0] + ", group id = " + groupNumber);
+					Core.plugin.getLogger().info("Syncing " + p.getName() + " (group = " + group + ", user id = " + id[0] + ", group id = " + groupNumber + ")");
 					SQL.queryUpdate("UPDATE `phpbb_users` SET `group_id` = " + groupNumber + " WHERE `user_id` = " + id[0] + ";");
 					SQL.queryUpdate("UPDATE `phpbb_user_group` SET `group_id`= " + groupNumber + " WHERE `user_id` = " + id[0] + ";");
 				} else {
