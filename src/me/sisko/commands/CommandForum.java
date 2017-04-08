@@ -22,7 +22,7 @@ public class CommandForum implements CommandExecutor {
 						p.sendMessage("Config reloaded");
 					}
 				} else {
-					p.sendMessage(ChatColor.RED + "Usage: /forum <reload|checkaccount>");
+					p.sendMessage(ChatColor.RED + "Usage: /forum <reload>");
 				}
 			} else {
 				p.sendMessage(ChatColor.RED + "Insufficient Permissions");

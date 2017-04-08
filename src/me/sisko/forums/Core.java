@@ -2,18 +2,33 @@ package me.sisko.forums;
 
 import java.io.File;
 
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import net.milkbowl.vault.permission.Permission;
+
 import me.sisko.commands.*;
+import me.sisko.phpbb.RankSync;
 
 public class Core extends JavaPlugin implements Listener {
 	public static Core plugin;
-
+	public static Permission perms;
+	
 	@Override
 	public void onEnable() {
+		if(getServer().getPluginManager().getPlugin("Vault") == null) {
+			getLogger().severe("Vault not found! Disabling...");
+			getServer().getPluginManager().disablePlugin(this);
+		}
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+		
 		plugin = this;
-				
+		
+		getCommand("forumsync").setExecutor(new CommandForumSync());
 		getCommand("register").setExecutor(new CommandRegister());
 		getCommand("forum").setExecutor(new CommandForum());
 		getCommand("changepassword").setExecutor(new CommandChangePassword());
@@ -46,6 +61,11 @@ public class Core extends JavaPlugin implements Listener {
 
 	@Override
 	public void onDisable() {
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent e) {
+		RankSync.sync(e.getPlayer());
 	}
 	
 }

@@ -1,6 +1,7 @@
 name: ForumSync
 main: me.sisko.forums.Core
 version: 1.1
+depend: [Vault]
 commands:
   register:
     description: Creates a forum account
@@ -12,3 +13,6 @@ commands:
   changepassword:
     description: Changes your forum password
     usage: /changepassword <newpassword>
+  forumsync:
+    description: Syncs your in-game rank with forum rank
+    usage: /forumsync
