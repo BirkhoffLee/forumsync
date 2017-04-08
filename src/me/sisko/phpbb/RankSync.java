@@ -25,9 +25,11 @@ public class RankSync {
 			if(id.length > 0) {
 				Core.plugin.getLogger().info(p.getName()+ "'s forum id is " + id[0]);
 				int groupNumber = getGroupNumber(group);
+				int rankNumber = getRankNumber(group);
 				if (getGroupNumber(group) > 0) {
-					Core.plugin.getLogger().info("Syncing " + p.getName() + " (group = " + group + ", user id = " + id[0] + ", group id = " + groupNumber + ")");
+					Core.plugin.getLogger().info("Syncing " + p.getName() + " (group = " + group + ", user id = " + id[0] + ", group id = " + groupNumber + ", rank id = " + rankNumber + ")");
 					SQL.queryUpdate("UPDATE `phpbb_users` SET `group_id` = " + groupNumber + " WHERE `user_id` = " + id[0] + ";");
+					SQL.queryUpdate("UPDATE `phpbb_users` SET `user_rank` = " + rankNumber + " WHERE `user_id` = " + id[0] + ";");
 					SQL.queryUpdate("UPDATE `phpbb_user_group` SET `group_id`= " + groupNumber + " WHERE `user_id` = " + id[0] + ";");
 				} else {
 					Core.plugin.getLogger().info(p.getName()+ "'s forum rank was not updated since the player is a guest or user");
@@ -53,6 +55,19 @@ public class RankSync {
 		case "Admin": return 13;
 		case "Owner": return 14;
 		case "Builder": return 15;
+		}
+		return -1;
+	}
+	private static int getRankNumber(String group) {
+		switch (group) {
+		case "User+": return 9;
+		case "Donor": return 8;
+		case "Donor+": return 7;
+		case "Helper": return 5;
+		case "Moderator": return 4;
+		case "Admin": return 3;
+		case "Owner": return 2;
+		case "Builder": return 6;
 		}
 		return -1;
 	}
