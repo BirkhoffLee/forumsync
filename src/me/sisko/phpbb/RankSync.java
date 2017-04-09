@@ -30,6 +30,7 @@ public class RankSync {
 					Core.plugin.getLogger().info("Syncing " + p.getName() + " (group = " + group + ", user id = " + id[0] + ", group id = " + groupNumber + ", rank id = " + rankNumber + ")");
 					SQL.queryUpdate("UPDATE `phpbb_users` SET `group_id` = " + groupNumber + " WHERE `user_id` = " + id[0] + ";");
 					SQL.queryUpdate("UPDATE `phpbb_users` SET `user_rank` = " + rankNumber + " WHERE `user_id` = " + id[0] + ";");
+					SQL.queryUpdate("UPDATE `phpbb_users` SET `user_permissions` = '' WHERE `user_id` = " + id[0] + ";");
 					SQL.queryUpdate("UPDATE `phpbb_user_group` SET `group_id`= " + groupNumber + " WHERE `user_id` = " + id[0] + ";");
 				} else {
 					Core.plugin.getLogger().info(p.getName()+ "'s forum rank was not updated since the player is a guest or user");
