@@ -48,6 +48,7 @@ public class RankSync {
 
 	private static int getGroupNumber(String group) {
 		switch (group) {
+		case "User": return 2;
 		case "User+": return 8;
 		case "Donor": return 9;
 		case "Donor+": return 10;
@@ -61,6 +62,7 @@ public class RankSync {
 	}
 	private static int getRankNumber(String group) {
 		switch (group) {
+		case "User": return 10;
 		case "User+": return 9;
 		case "Donor": return 8;
 		case "Donor+": return 7;
