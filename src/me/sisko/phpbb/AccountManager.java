@@ -58,6 +58,12 @@ public class AccountManager {
 
 	public static boolean changePassword(String name, String pass) {
 		try {
+			SQL = new ForumSQL(
+					config.getString("sql.ip"),
+					config.getString("sql.port"),
+					config.getString("sql.database"),
+					config.getString("sql.user"),
+					config.getString("sql.pass"));
 			String password = CHANGEPASSWORDTEMPLATE;
 			password = password.replace("%USERNAME%", name);
 			password = password.replace("%PASSWORD%", pass);
