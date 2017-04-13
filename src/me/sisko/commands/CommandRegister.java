@@ -37,8 +37,9 @@ public class CommandRegister implements CommandExecutor {
 						if (accounts.get(i).getName().equals(p.getName())) {
 							nameFound = true;
 							if (accounts.get(i).getPass().equals(args[1])) {
-								if (AccountManager.createAccount(accounts.get(i).getName(), accounts.get(i).getEmail(), accounts.get(i).getPass(), p.getAddress().getHostString()) && RankSync.sync(p)) {
+								if (AccountManager.createAccount(accounts.get(i).getName(), accounts.get(i).getEmail(), accounts.get(i).getPass(), p.getAddress().getHostString())) {
 									Core.plugin.getLogger().info("Creating an account for " + p.getName());
+									RankSync.sync(p);
 									p.sendMessage(ChatColor.GREEN + "Account created!");
 									p.sendMessage(ChatColor.GREEN + "Name: " + accounts.get(i).getName());
 									p.sendMessage(ChatColor.GREEN + "Email: " + accounts.get(i).getEmail());
